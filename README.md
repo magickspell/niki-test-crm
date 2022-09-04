@@ -19,6 +19,7 @@ FE listening port 8080 by default.
 Run:
 1) clone repo: `git clone`
 2) install deps:
+- `npm i`
 - `cd ./test-beckend`
 - `npm i`
 - `cd ./test-frontend`

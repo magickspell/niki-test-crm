@@ -1,0 +1,14 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "test app",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fly": "concurrently \"npm --prefix ./test-backend run start\"  \"npm --prefix ./test-frontend run start\"",
+    "yarn-fly": "concurrently \"yarn --cwd ./test-backend run start\" \"yarn --cwd ./test-frontend run start\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
