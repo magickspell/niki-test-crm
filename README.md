@@ -24,7 +24,8 @@ Run:
 - `npm i`
 - `cd ./test-frontend`
 - `npm i`
-3) go root and run script:
+3) create .env files in BE (params: REACT_APP_RETAIL_KEY, REACT_APP_RETAIL_URL) and FE (params: PORT) folder.
+4) go root and run script:
 - `cd ./`
 - `npm run-script fly`
 
