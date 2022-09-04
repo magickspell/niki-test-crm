@@ -1,0 +1,148 @@
+*краткая выжимка инфы, подробности и примеры в коде.
+https://help.retailcrm.pro/Developers/ApiVersion5 - дока по апи
+
+///
+#MOBX
+state manager
+-состояние изменяемое (в отличие от редакса) т.е. переменные меняются автоматом
+-переменные являются состоянием
+-функции являются экшенами
+-стейты создаются как классы (экспорт дефалт экземпляр класса)
+-асинхронщина работает под капотом (санки не нужны)
+-makeAutoObservable(this) - функция для конструктора, которая прокидывает стейт
+-- третий параметр {deep: true} - глубокое отслеживание
+-observer - функция обертка для компонент для подключения стейта
+///
+
+///
+#NEST.JS
+-Рест представляет из себя связку "Модуль - Контроллер - Сервис"
+--Модуль - модуль )
+--Контроллер - штука которая обрабатывает запросы и дергает сервисы (@Controller, @Get, @Post, etc)
+--Сервиса - штука где описана логика (тяжелые штуки) (@Injectable)
+
+-У nest есть своя cli (аля angular), которая позволяет быстро что-то создать (например сервис для контроллера)
+///
+
+///
+#GQL + NEST
+-может быть два подхода к написанию, настраивается в модуле неста
+--сначала код
+--сначала схема (генерируется из файлов *.graphql)
+
+-resolvers - методы гкля который возвращают необходимую инфу, в нашем кейсе мы как бы проксируем через гкл запросы к СРМ беку
+
+///
+
+
+
+GQL QUERIES
+
+# Write your query or mutation here
+query getFirstOrder {
+  order(number: "619") {
+    number
+    id
+    site
+    createdAt
+    status
+  }
+}
+
+query order {
+  order(number: "629") {
+    number
+    id
+    site
+    createdAt
+    status
+    delivery {
+      code
+    }
+    items {
+      id
+      status
+      #comment
+      offer {
+        externalId
+        displayName
+        article
+      }
+      quantity
+    }
+  }
+}
+
+query getDeliveryTypes {
+  deliveryTypes {
+    code
+    name
+  }
+}
+
+query getProdStatuses {
+  productStatuses {
+    code
+    name
+  }
+}
+
+query getOrderStatuses {
+  orderStatuses {
+    code
+    name
+  }
+}
+
+
+query getOrders {
+  getOrders(page: 1) {
+    orders {
+      number
+      id
+      site
+      createdAt
+      status
+      items {
+       id
+      status
+      quantity
+      offer {
+       externalId
+      displayName
+      article
+      }
+      }
+      delivery {
+       code
+      }
+    }
+    pagination {
+      limit
+      totalCount
+      currentPage
+      totalPageCount
+    }
+  }
+}
+
+query OrdersCode {
+  getOrders(page: 1) {
+    orders {
+      id
+      number
+      site
+      createdAt
+      delivery {
+        code
+      }
+      status
+    }
+    pagination {
+      limit
+      totalCount
+      currentPage
+      totalPageCount
+    }
+  }
+}

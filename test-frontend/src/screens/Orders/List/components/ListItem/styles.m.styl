@@ -1,0 +1,25 @@
+@import '../../../../../common.styl'
+
+.row
+  min-height 64px
+  display grid
+  grid-template-columns repeat(5, 20%)
+  padding 8px
+  justify-items center
+  align-items center
+
+  div
+    margin 0 auto
+
+
+    div
+      width 80%
+
+
+    &:last-child div
+      width 100%
+
+
+.orderNumber
+  font-weight 500
+  color $primary-dark
